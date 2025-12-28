@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism-tomorrow.min.css"
+    />
+    <title>Hướng Dẫn Xây Dựng Ứng Dụng Todo List Đơn Giản</title>
+  </head>
+  <body>
+    <!-- header -->
+    <div>
+      <h1>Hướng Dẫn Xây Dựng Ứng Dụng Todo List Đơn Giản</h1>
+      <p>
+        Chào mừng các bạn đến với bài thực hành nhập môn lập trình web! Hôm nay,
+        chúng ta sẽ cùng nhau xây dựng một ứng dụng <b>Todo List</b> (Danh sách
+        việc cần làm). Đây là dự án kinh điển giúp bạn hiểu rõ cách HTML, CSS và
+        JavaScript phối hợp để tạo ra một trang web có tính tương tác.
+      </p>
+      <p>Chúng ta sẽ đi qua 3 bước chính:</p>
+      <ol>
+        <li><a href="#step-1">Xây dựng khung xương (HTML)</a></li>
+        <li><a href="#step-2">Trang trí giao diện (CSS)</a></li>
+        <li><a href="#step-3">Xử lý Logic (JavaScript)</a></li>
+      </ol>
+    </div>
+    <!-- Step 1 -->
+    <div>
+      <h2 id="step-1">
+        <a href="#step-1">Bước 1: Xây dựng khung xương (HTML)</a>
+      </h2>
+      <ul>
+        <li>Một ô nhập liệu (Input) để người dùng gõ công việc.</li>
+        <li>Một nút bấm (Button) để thêm công việc đó vào danh sách.</li>
+        <li>Một khu vực hiển thị danh sách các công việc (List container).</li>
+      </ul>
+      <p>Dưới đây là cấu trúc HTML:</p>
+      <pre>
+            <code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;vi&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;My Todo List&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;h2&gt;Danh Sách Việc Cần Làm&lt;/h2&gt;
+
+      &lt;div class=&quot;input-group&quot;&gt;
+        &lt;input
+          type=&quot;text&quot;
+          id=&quot;todo-input&quot;
+          placeholder=&quot;Nhập công việc mới...&quot;
+        /&gt;
+        &lt;button id=&quot;add-btn&quot;&gt;Thêm&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;ul id=&quot;todo-list&quot;&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code>
+        </pre>
+      <p>
+        <strong>Giải thích mã:</strong>
+      </p>
+      <ul>
+        <li>
+          <code class="language-html">div.container</code>: Thẻ bao bọc toàn bộ
+          nội dung chính để dễ căn chỉnh giữa màn hình.
+        </li>
+        <li>
+          <code class="language-html">input</code>: Có
+          <code class="language-html">id="todo-input"</code> để JavaScript có
+          thể lấy được nội dung người dùng nhập.
+        </li>
+        <li>
+          <code class="language-html">button</code>: Có
+          <code class="language-html">id="add-btn"</code> để JavaScript bắt sự
+          kiện khi người dùng click vào.
+        </li>
+        <li>
+          <code class="language-html">ul</code>: Có
+          <code class="language-html">id="todo-list"</code>. Đây là một danh
+          sách không thứ tự rỗng, nơi chúng ta sẽ chèn các thẻ
+          <code>&lt;li&gt;</code> (các công việc) vào sau này.
+        </li>
+      </ul>
+    </div>
+    <!-- Step 2 -->
+    <div>
+      <h2 id="step-2">
+        <a href="#step-2">Bước 2: Trang trí giao diện (CSS)</a>
+      </h2>
+      <p>
+        Nếu chỉ có HTML, trang web trông sẽ rất đơn điệu. Chúng ta sẽ dùng CSS
+        để căn giữa giao diện, tạo khoảng cách và màu sắc dễ nhìn hơn.
+      </p>
+      <p>
+        Hãy thêm đoạn mã sau vào file
+        <code class="language-html">style.css</code>:
+      </p>
+      <pre>
+        <code class="language-css">
+/* Cấu hình chung cho trang */
+body {
+    font-family: &apos;Arial&apos;, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Chiều cao bằng 100% màn hình */
+    margin: 0;
+}
+
+/* Khung chứa chính */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 350px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Khu vực nhập liệu */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    flex-grow: 1; /* Input chiếm hết khoảng trống còn lại */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button#add-btn {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button#add-btn:hover {
+    background-color: #218838;
+}
+
+/* Danh sách công việc */
+ul {
+    list-style-type: none; /* Bỏ dấu chấm tròn mặc định */
+    padding: 0;
+}
+
+li {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Đẩy nội dung và nút xóa sang 2 bên */
+    align-items: center;
+}
+
+/* Nút xóa */
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}            
+        </code>
+      </pre>
+      <p>
+        <strong>Giải thích mã:</strong>
+      </p>
+      <ul>
+        <li>
+          <b>Flexbox (<code class="language-css">display: flex</code>)</b>: Được
+          sử dụng rất nhiều để căn giữa nội dung
+          <code class="language-html">body</code> và sắp xếp các phần tử
+          <code class="language-html">li</code> (nội dung bên trái, nút xóa bên
+          phải).
+        </li>
+        <li>
+          <code class="language-css">list-style-type: none</code>: Loại bỏ các
+          dấu chấm đầu dòng mặc định của thẻ
+          <code class="language-html">&lt;ul&gt;</code> để danh sách trông gọn
+          gàng hơn.
+        </li>
+        <li>
+          <b>Hiệu ứng Hover</b>: Giúp người dùng biết nút bấm có thể tương tác
+          được (đổi màu khi di chuột).
+        </li>
+      </ul>
+    </div>
+    <!-- Step 3 -->
+    <div>
+      <h2 id="step-3">
+        <a href="#step-3">Bước 3: Xử lý Logic (JavaScript)</a>
+      </h2>
+      <p>
+        Đây là phần quan trọng nhất. Chúng ta cần viết mã JavaScript để thực
+        hiện quy trình sau:
+      </p>
+      <ol>
+        <li>Lấy nội dung từ ô Input.</li>
+        <li>
+          Tạo ra một thẻ <code class="language-html">&lt;li&gt;</code> mới chứa
+          nội dung đó và một nút Xóa.
+        </li>
+        <li>
+          Gắn thẻ <code class="language-html">&lt;li&gt;</code> này vào
+          <code class="language-html">&lt;ul&gt;</code>.
+        </li>
+        <li>
+          Xử lý sự kiện khi bấm nút Xóa thì gỡ bỏ thẻ
+          <code class="language-html">&lt;li&gt;</code> tương ứng.
+        </li>
+      </ol>
+      <p>Dưới đây là mã cho file <code class="language-js">script.js</code>:</p>
+      <pre>
+        <code class="language-js">
+// 1. Chọn các phần tử cần thiết từ DOM
+const input = document.getElementById(&apos;todo-input&apos;);
+const addBtn = document.getElementById(&apos;add-btn&apos;);
+const todoList = document.getElementById(&apos;todo-list&apos;);
+
+// 2. Hàm thêm công việc mới
+function addTodo() {
+    // Lấy giá trị người dùng nhập và loại bỏ khoảng trắng thừa
+    const taskText = input.value.trim();
+
+    // Kiểm tra nếu ô nhập rỗng thì không làm gì cả
+    if (taskText === &apos;&apos;) {
+        alert(&quot;Vui lòng nhập nội dung công việc!&quot;);
+        return;
+    }
+
+    // Tạo thẻ li mới
+    const li = document.createElement(&apos;li&apos;);
+
+    // Tạo nội dung text cho li
+    const span = document.createElement(&apos;span&apos;);
+    span.textContent = taskText;
+
+    // Tạo nút xóa
+    const deleteBtn = document.createElement(&apos;button&apos;);
+    deleteBtn.textContent = &apos;Xóa&apos;;
+    deleteBtn.classList.add(&apos;delete-btn&apos;); // Thêm class để nhận CSS
+
+    // Gắn sự kiện xóa cho nút vừa tạo
+    deleteBtn.onclick = function() {
+        todoList.removeChild(li);
+    };
+
+    // Gắn text và nút xóa vào thẻ li
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+
+    // Gắn thẻ li vào danh sách ul
+    todoList.appendChild(li);
+
+    // Xóa nội dung trong ô input sau khi thêm xong
+    input.value = &apos;&apos;;
+    input.focus(); // Đặt trỏ chuột lại vào ô input
+}
+
+// 3. Lắng nghe sự kiện click vào nút &quot;Thêm&quot;
+addBtn.addEventListener(&apos;click&apos;, addTodo);
+
+// Nâng cao: Cho phép ấn Enter để thêm
+input.addEventListener(&apos;keypress&apos;, function(event) {
+    if (event.key === &apos;Enter&apos;) {
+        addTodo();
+    }
+});
+        </code>
+      </pre>
+      <p>
+        <strong>Giải thích mã:</strong>
+      </p>
+      <ul>
+        <li>
+          <code class="language-js">document.getElementById</code>: Giúp JS
+          "túm" lấy các thẻ HTML để thao tác.
+        </li>
+        <li>
+          <code class="language-js">document.createElement</code>: Tạo ra các
+          thẻ HTML mới hoàn toàn từ bộ nhớ (chưa hiện lên màn hình).
+        </li>
+        <li>
+          <code class="language-js">appendChild</code>: Đây là lệnh đưa phần tử
+          con vào trong phần tử cha. Ví dụ: Đưa nút Xóa vào trong dòng công việc
+          (<code class="language-html">li</code>), rồi đưa dòng công việc vào
+          danh sách (<code class="language-html">ul</code>).
+        </li>
+        <li>
+          <b>Logic nút Xóa</b>: Thay vì gán ID cho mỗi nút xóa (rất phức tạp),
+          ta gán trực tiếp sự kiện <code class="language-js">onclick</code> ngay
+          lúc tạo nút đó. Khi click, nó sẽ tìm đến cha của nó (thẻ
+          <code class="language-html">li</code>) và yêu cầu
+          <code class="language-js">todoList</code> gỡ bỏ đứa con này (<code
+            class="language-js"
+            >removeChild</code
+          >).
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  </body>
+</html>

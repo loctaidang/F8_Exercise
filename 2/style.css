@@ -1,0 +1,22 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+h1 {
+  margin-bottom: 15px;
+  color: blue;
+  font-size: 36px;
+  text-align: center;
+}
+.project-item {
+  background: #fff;
+  border: 1px solid #e1e1e1;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+.project-item:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-color: #3498db;
+}
