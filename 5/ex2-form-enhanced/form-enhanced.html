@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/style.css"
+    />
+    <title>Form Đăng Ký</title>
+  </head>
+  <body>
+    <div class="form-register">
+      <header>
+        <h1>Register</h1>
+      </header>
+      <main>
+        <form action="">
+          <div class="form-group">
+            <label
+              for="display-name"
+              class="form-label required"
+              >Display Name</label
+            >
+            <input
+              type="text"
+              class="form-input"
+              id="display-name"
+              placeholder="Ví dụ: Minh Dang"
+              spellcheck="false"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="email"
+              class="form-label required"
+              >Email</label
+            >
+            <input
+              type="email"
+              class="form-input"
+              id="email"
+              placeholder="name@example.com"
+              spellcheck="false"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label
+              for="phone"
+              class="form-label required"
+              >Phone Number</label
+            >
+            <input
+              type="tel"
+              class="form-input"
+              id="phone"
+              placeholder="0912..."
+              spellcheck="false"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label
+              for="password"
+              class="form-label required"
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-input"
+              id="password"
+              placeholder="Please enter password..."
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label
+              for="confirm-password"
+              class="form-label required"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              class="form-input"
+              id="confirm-password"
+              placeholder="Confirm your password..."
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label required">Gender</label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                required
+              />
+              Male
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                required
+              />
+              Female
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                required
+              />
+              Other
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label
+              for="dob"
+              class="form-label"
+              >Date of Birth</label
+            >
+            <input
+              type="date"
+              class="form-input"
+              id="dob"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="address"
+              class="form-label"
+              >Address</label
+            >
+            <input
+              type="text"
+              class="form-input"
+              id="address"
+              placeholder="Ví dụ: Thành phố Hồ Chí Minh"
+              spellcheck="false"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label
+              for="avatar"
+              class="form-label"
+              >Avatar</label
+            >
+            <label for="avatar">
+              <img
+                src="../img/avatar-placeholder.jpg"
+                alt=""
+                class="avatar-img"
+              />
+            </label>
+            <input
+              type="file"
+              id="avatar"
+              accept="image/*"
+              hidden
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Communication Preferences</label>
+            <div class="checkbox-group">
+              <label>
+                <input type="checkbox" />
+                Subscribe to Newsletter
+              </label>
+              <label>
+                <input type="checkbox" />
+                Receive Promotional Emails
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                Get Product Updates
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button
+              type="submit"
+              class="form-submit"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
