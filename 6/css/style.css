@@ -33,6 +33,33 @@ html {
 body {
   background-color: #e9e9e9;
 }
+
+.menu {
+  margin: 40px auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+.menu li {
+  margin-bottom: 20px;
+}
+
+.menu li a {
+  min-width: 200px;
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px 24px;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  color: #fff;
+  background-color: #3e5cca;
+  border-radius: 8px;
+}
+
+.menu li a:hover {
+  background-color: #2d47a3;
+}
+/* Ex-01 */
 .wrap-cv {
   display: flex;
   max-width: 1000px;
@@ -369,7 +396,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .form-register {
@@ -487,4 +513,33 @@ input[type="checkbox"] {
 
 .form-submit:active {
   background-color: #1a2c75;
+}
+
+/* ex-05 */
+.wrap-froggy {
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+}
+
+.pond {
+  margin-bottom: 20px;
+  background-color: #cecece;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.pond img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.pond p {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
 }
